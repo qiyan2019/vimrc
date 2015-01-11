@@ -1,0 +1,9 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1891
+
+This colorscheme is based on the Vibrant Ink theme for TextMate.  The original
+theme was biased towards Ruby on Rails and this colorscheme continues that
+tradition.  In addition to the GUI, 256, 88, and even 16 color terminals are
+all supported.
+
+http://github.com/tpope/vim-vividchalk
+
