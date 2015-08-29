@@ -2,47 +2,18 @@
 " Author:       gmarik
 " HomePage:     http://github.com/gmarik/vundle
 " Readme:       http://github.com/gmarik/vundle/blob/master/README.md
-" Version:      0.9
+" Version:      0.5
 
-com! -nargs=+         Bundle
-\ call vundle#config#bundle(<args>)
+com! -nargs=+       Bundle                call vundle#config#bundle(<args>)
+com! -nargs=? -bang BundleInstall         call vundle#installer#install('<bang>')
+com! -nargs=? -bang BundleClean           call vundle#installer#clean('<bang>')
+com! -nargs=0       BundleDocs            call vundle#installer#helptags()
 
-com! -nargs=? -bang -complete=custom,vundle#scripts#complete BundleInstall
-\ call vundle#installer#new('!' == '<bang>', <q-args>)
+com! -nargs=+ -bang BundleSearch  silent  call vundle#scripts#search('<bang>', <q-args>)
 
-com! -nargs=? -bang -complete=custom,vundle#scripts#complete BundleSearch
-\ call vundle#scripts#all('!'=='<bang>', <q-args>)
+com! -nargs=0       VundleLog     silent  pedit `=g:vundle_log`
 
-com! -nargs=? -bang -complete=custom,vundle#scripts#complete Bundles
-\ call vundle#scripts#all('!'=='<bang>', <q-args>)
-
-com! -nargs=0 -bang BundleList
-\ call vundle#installer#list('!'=='<bang>')
-
-com! -nargs=? -bang   BundleClean
-\ call vundle#installer#clean('!' == '<bang>')
-
-com! -nargs=0         BundleDocs 
-\ call vundle#installer#helptags(g:bundles)
-
-" Aliases
-com! BundleUpdate BundleInstall!
-
-if (has('signs'))
-sign define Vu_error    text=!  texthl=Error
-sign define Vu_active   text=>  texthl=Comment
-sign define Vu_todate   text=.  texthl=Comment
-sign define Vu_new      text=+  texthl=Comment
-sign define Vu_updated  text=*  texthl=Comment
-sign define Vu_deleted  text=-  texthl=Comment
-sign define Vu_helptags text=*  texthl=Comment
-endif
-
-
-func! vundle#rc(...) abort
-  let g:bundle_dir = len(a:000) > 0 ? expand(a:1, 1) : expand('$HOME/.vim/bundle', 1)
-  let g:updated_bundles = []
-  let g:vundle_log = []
-  let g:vundle_changelog = ['Updated Bundles:']
+func! vundle#rc()
+  let g:bundle_dir = expand('$HOME/.vim/bundle')
   call vundle#config#init()
 endf
