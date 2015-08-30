@@ -372,15 +372,8 @@ omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
-"autoformat
-"fun! FormateCode()
-"    "let basename=bufname()
-"    let line = line('.')
-"    exec '%! astyle -A2fSpUk1vNMwLs4o'
-"    exec line
-"endfun
-"map <leader>f :call FormateCode()<CR>
-"let g:autoformat_verbosemode = 1
+"auto formater
+au BufWrite * :Autoformat
 let g:formatters_c = ['astyle_c']
 let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -U -k1 -v -N -M -w -L -s4 -o"'
 let g:formatters_cpp = ['astyle_cpp']
