@@ -45,7 +45,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/syntastic'
-Bundle 'Valloric/ListToggle'
+"Bundle 'Valloric/ListToggle'
 
 call vundle#end()            " required
 " General Settings
