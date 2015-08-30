@@ -25,7 +25,6 @@ Plugin 'The-NERD-Commenter'
 Plugin 'The-NERD-tree'
 Plugin 'OmniCppComplete'
 Plugin 'vim-airline'
-"Plugin 'SuperTab'
 Plugin 'surround.vim'
 Plugin 'Tagbar'
 Plugin 'tlib'
@@ -35,7 +34,6 @@ Plugin 'Pydiction'
 Plugin 'fatih/vim-go'
 Plugin 'L9'
 Plugin 'FuzzyFinder'
-"Plugin 'pylint.vim'
 Plugin 'vim-orgmode'
 Plugin 'speeddating.vim'
 Plugin 'dantezhu/authorinfo'
@@ -45,7 +43,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/syntastic'
-"Bundle 'Valloric/ListToggle'
+Plugin 'Chiel92/vim-autoformat'
 
 call vundle#end()            " required
 " General Settings
@@ -91,7 +89,6 @@ map gf :IHV<cr>
 
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
-"autocmd BufWritePre *.go :go fmt
 
 syntax enable
 syntax on		" syntax highlight
@@ -172,9 +169,9 @@ autocmd FileType c,cpp,cc,h set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0
 set viminfo='10,\"100,:20,%,n~/.viminfo
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-    "--------------------------------------------------------------------------- 
-    " Tip #382: Search for <cword> and replace with input() in all open buffers 
-    "--------------------------------------------------------------------------- 
+"--------------------------------------------------------------------------- 
+" Tip #382: Search for <cword> and replace with input() in all open buffers 
+"--------------------------------------------------------------------------- 
 fun! Replace() 
     let s:word = input("Replace " . expand('<cword>') . " with:") 
     :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/ge' 
@@ -235,8 +232,7 @@ nmap <leader>/ :nohl<CR>
 vnoremap < <gv
 vnoremap > >gv
 
-" ,f format the c/c++ code
-map <leader>f :!astyle --style=kr -f -S -p -U -k1 -V -N -x -M -w -L -s4 -o 
+
 
 " Enable omni completion. (Ctrl-X Ctrl-O)
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -250,7 +246,6 @@ autocmd FileType java set omnifunc=javacomplete#Complete
 "--------------------------------------------------------------------------- 
 " ENCODING SETTINGS
 "--------------------------------------------------------------------------- 
-"set encoding=gb2312
 set encoding=utf-8                                  
 set termencoding=utf-8
 set fileencodings=utf-8,gbk,ucs-bom,cp936
@@ -376,3 +371,17 @@ map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
+
+"autoformat
+"fun! FormateCode()
+"    "let basename=bufname()
+"    let line = line('.')
+"    exec '%! astyle -A2fSpUk1vNMwLs4o'
+"    exec line
+"endfun
+"map <leader>f :call FormateCode()<CR>
+"let g:autoformat_verbosemode = 1
+let g:formatters_c = ['astyle_c']
+let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -U -k1 -v -N -M -w -L -s4 -o"'
+let g:formatters_cpp = ['astyle_cpp']
+let g:formatdef_astyle_cpp = '"astyle --mode=c -A2 -f -S -p -U -k1 -v -N -M -w -L -s4 -o"'
