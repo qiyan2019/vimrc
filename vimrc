@@ -44,6 +44,9 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/syntastic'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'bronson/vim-trailing-whitespace'
 
 call vundle#end()            " required
 " General Settings
@@ -375,6 +378,6 @@ map  N <Plug>(easymotion-prev)
 "auto formater
 au BufWrite * :Autoformat
 let g:formatters_c = ['astyle_c']
-let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -U -k1 -v -N -M -w -L -s4 -o"'
+let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
 let g:formatters_cpp = ['astyle_cpp']
-let g:formatdef_astyle_cpp = '"astyle --mode=c -A2 -f -S -p -U -k1 -v -N -M -w -L -s4 -o"'
+let g:formatdef_astyle_cpp = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
