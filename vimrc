@@ -17,7 +17,9 @@ Plugin 'auto_mkdir'
 Plugin 'TagHighlight'
 Plugin 'AutoClose'
 Plugin 'cuteErrorMarker'
-Plugin 'EasyMotion'
+"Plugin 'EasyMotion'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-repeat'
 Plugin 'indent-motion'
 Plugin 'The-NERD-Commenter'
 Plugin 'The-NERD-tree'
@@ -409,9 +411,27 @@ let g:ycm_seed_identifiers_with_syntax = 1
 "let g:SuperTabDefaultCompletionType = '<S-Tab>'
 "
 
-map <leader>j <Esc>:%!python -m json.tool<CR>
+"map <leader>j <Esc>:%!python -m json.tool<CR>
 let g:vim_markdown_folding_disabled=1
 
 "let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+
+
+
+" JK motions: Line motions
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+nmap s <Plug>(easymotion-s)
+let g:EasyMotion_smartcase = 1
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
