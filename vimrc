@@ -42,6 +42,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'scrooloose/syntastic'
+Bundle 'Valloric/ListToggle'
 
 call vundle#end()            " required
 " General Settings
@@ -409,3 +411,7 @@ let g:ycm_seed_identifiers_with_syntax = 1
 
 map <leader>j <Esc>:%!python -m json.tool<CR>
 let g:vim_markdown_folding_disabled=1
+
+"let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
