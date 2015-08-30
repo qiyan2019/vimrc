@@ -84,11 +84,6 @@ function! VisualSearch(direction) range
     let @" = l:saved_reg
 endfunction
 
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>  
-
-"map gf :tabnew <cfile><cr>
-map gf :IHV<cr>
 
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
@@ -181,60 +176,8 @@ fun! Replace()
     :unlet! s:word 
 endfun 
 
-"--------------------------------------------------------------------------- 
-" USEFUL SHORTCUTS
-"--------------------------------------------------------------------------- 
-" set leader to ,
-let mapleader=","
-let g:mapleader=","
-
-"replace the current word in all opened buffers
-map <leader>s :call Replace()<CR>
-
-map <leader>e ysiw
-" open the error console
-map <leader>ec :botright cope<CR> 
-" move to next error
-map <leader>] :cn<CR>
-" move to the prev error
-map <leader>[ :cp<CR>
-
-" --- move around splits {
-" move to and maximize the below split 
-"map <C-J> <C-W>j<C-W>_
-map <C-j> <ESC><C-w>j
-map <C-k> <ESC><C-w>k
-map <C-h> <ESC><C-w>h
-map <C-l> <ESC><C-w>l
-" move to and maximize the above split 
-"map <C-K> <C-W>k<C-W>_
-" move to and maximize the left split 
-"nmap <c-h> <c-w>h<c-w><bar>
-" move to and maximize the right split  
-"nmap <c-l> <c-w>l<c-w><bar>
 set wmw=0                     " set the min width of a window to 0 so we can maximize others 
 set wmh=0                     " set the min height of a window to 0 so we can maximize others
-" }
-
-" move around tabs. conflict with the original screen top/bottom
-" comment them out if you want the original H/L
-" go to prev tab 
-map <S-H> gT
-" go to next tab
-map <S-L> gt
-
-" new tab
-map <C-t><C-t> :tabnew<CR>
-" close tab
-map <C-t><C-w> :tabclose<CR> 
-
-" ,/ turn off search highlighting
-nmap <leader>/ :nohl<CR>
-
-" allow multiple indentation/deindentation in visual mode
-vnoremap < <gv
-vnoremap > >gv
-
 
 
 " Enable omni completion. (Ctrl-X Ctrl-O)
@@ -262,8 +205,6 @@ hi link EasyMotionShade  Comment
 
 " --- TagBar
 " toggle TagBar with F7
-nnoremap <silent> <F7> :TagbarToggle<CR> 
-nnoremap <silent> <F8> :NERDTreeToggle<CR> 
 let NERDTreeQuitOnOpen = 0
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 0
@@ -297,6 +238,7 @@ set completeopt=menuone,menu,longest,preview
 
 
 
+"indentline
 let g:indentLine_color_term = 239  
 let g:indentLine_color_gui = '#A4E57E'  
 let g:indentLine_color_dark = 1
@@ -304,19 +246,16 @@ let g:indentLine_char = '¦'
 
 set cursorcolumn
 
-map <F10> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ .<CR>
 
 
 highlight Pmenu    guibg=darkgrey  guifg=black 
 highlight PmenuSel guibg=lightgrey guifg=black
 
-nmap <F4> :AuthorInfoDetect<cr>
+"author info
 let g:vimrc_author='Xue Ning'  
 let g:vimrc_email='ning.xue@meelive.cn' 
 let g:vimrc_homepage='http://www.meelive.cn' 
 
-nmap <F3> :Dox <cr>
-nmap <F2> :ConqueTermVSplit 
 
 "doxygen setting
 let g:DoxygenToolkit_authorName="Xue Ning, ning.xue@meelive.cn"
@@ -328,18 +267,18 @@ let g:DoxygenToolkit_briefTag_funcName="yes"
 let g:doxygen_enhanced_color=1
 
 
+"pydict"
 let g:pydiction_location='~/.vim/bundle/Pydiction/complete-dict' 
 
+"snipmate
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+"ycm config
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_collect_identifiers_from_tags_files = 1  
@@ -350,30 +289,20 @@ let g:ycm_seed_identifiers_with_syntax = 1
 "let g:SuperTabDefaultCompletionType = '<S-Tab>'
 "
 
-"map <leader>j <Esc>:%!python -m json.tool<CR>
+"markdown"
 let g:vim_markdown_folding_disabled=1
 
+"seystatistic
 "let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 
 
-
-" JK motions: Line motions
+"easymotione
 let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
-nmap s <Plug>(easymotion-s)
 let g:EasyMotion_smartcase = 1
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
-
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
 
 "auto formater
 au BufWrite * :Autoformat
@@ -381,3 +310,84 @@ let g:formatters_c = ['astyle_c']
 let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
 let g:formatters_cpp = ['astyle_cpp']
 let g:formatdef_astyle_cpp = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
+
+
+
+"--------------------------------------------------------------------------- 
+" USEFUL SHORTCUTS
+"--------------------------------------------------------------------------- 
+" set leader to ,
+let mapleader=","
+let g:mapleader=","
+
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>  
+
+map gf :IHV<cr>
+
+"replace the current word in all opened buffers
+map <leader>s :call Replace()<CR>
+
+"surround
+"ds
+"cs
+"ys$" 当前到行尾, 引号引住"
+map <leader>e ysiw
+" open the error console
+map <leader>ec :botright cope<CR> 
+" move to next error
+map <leader>] :cn<CR>
+" move to the prev error
+map <leader>[ :cp<CR>
+
+" --- move around splits {
+" move to and maximize the below split 
+map <C-j> <ESC><C-w>j
+map <C-k> <ESC><C-w>k
+map <C-h> <ESC><C-w>h
+map <C-l> <ESC><C-w>l
+
+" go to prev tab 
+map <S-H> gT
+" go to next tab
+map <S-L> gt
+
+" new tab
+map <C-t><C-t> :tabnew<CR>
+" close tab
+map <C-t><C-w> :tabclose<CR> 
+
+" ,/ turn off search highlighting
+nmap <leader>/ :nohl<CR>
+
+" allow multiple indentation/deindentation in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+"tagbar
+nnoremap <silent> <F7> :TagbarToggle<CR> 
+nnoremap <silent> <F8> :NERDTreeToggle<CR> 
+
+"ctags
+map <F10> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ .<CR>
+
+"add author info
+nmap <F4> :AuthorInfoDetect<cr>
+"add doc
+nmap <F3> :Dox <cr>
+nmap <F2> :ConqueTermVSplit 
+
+"goto here
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+nmap s <Plug>(easymotion-s)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
