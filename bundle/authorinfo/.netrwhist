@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/ning.xue/svnprojects/subscribe_service/trunk/utility/user_active_time'
-let g:netrw_dirhist_2='/home/ning.xue/svnprojects/subscribe_service/trunk/src/proxy/protocol'
-let g:netrw_dirhist_3='/home/ning.xue/svnprojects/subscribe_service/trunk/src/proxy/protocol/testd'

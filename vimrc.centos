@@ -12,6 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'a.vim'
 Plugin 'DoxygenToolkit.vim'
+Plugin 'vundle'
 Plugin 'molokai'
 ""plugin
 Plugin 'auto_mkdir'
@@ -20,7 +21,7 @@ Plugin 'AutoClose'
 Plugin 'cuteErrorMarker'
 Plugin 'EasyMotion'
 Plugin 'indent-motion'
-Plugin 'The-NERD-Commenter'
+Plugin 'nerdcommenter'
 Plugin 'The-NERD-tree'
 Plugin 'OmniCppComplete'
 Plugin 'vim-airline'
@@ -28,21 +29,19 @@ Plugin 'vim-airline'
 Plugin 'surround.vim'
 Plugin 'Tagbar'
 Plugin 'tlib'
+Plugin 'vim-addon-mw-utils'
 Plugin 'indentLine.vim'
 Plugin 'project.tar.gz'
 Plugin 'Pydiction'
-Plugin 'fatih/vim-go'
+Plugin 'vim-go'
 Plugin 'L9'
 Plugin 'FuzzyFinder'
-Plugin 'pylint.vim'
 Plugin 'vim-orgmode'
 Plugin 'speeddating.vim'
-Plugin 'AuthorInfo'
+"Plugin 'AuthorInfo'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()            " required
 filetype plugin indent on
@@ -366,10 +365,10 @@ highlight PmenuSel guibg=lightgrey guifg=black
 "hi PmenuSel term=reverse ctermfg=3 ctermbg=8 gui=bold,reverse
 
 
-"nmap <F4> :AuthorInfoDetect<cr>
-"let g:vimrc_author='Xue Ning'  
-"let g:vimrc_email='ning.xue@duomi.com' 
-"let g:vimrc_homepage='http://www.meelive.cn' 
+nmap <F4> :AuthorInfoDetect<cr>
+let g:vimrc_author='Xue Ning'  
+let g:vimrc_email='ning.xue@duomi.com' 
+let g:vimrc_homepage='http://www.meelive.cn' 
 
 nmap <F3> :Dox <cr>
 nmap <F2> :ConqueTermVSplit 
@@ -408,6 +407,8 @@ let g:ycm_seed_identifiers_with_syntax = 1
 "let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 "let g:SuperTabDefaultCompletionType = '<S-Tab>'
 "
-
+"
 map <leader>j <Esc>:%!python -m json.tool<CR>
-let g:vim_markdown_folding_disabled=1
+
+
+
