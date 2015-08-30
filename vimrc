@@ -236,7 +236,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " ,f format the c/c++ code
-"map <leader>f :!astyle -A2 -S -p -U -k1 -x -M -w -L -s4 -o 
+map <leader>f :!astyle -astyle=kr -f -S -p -U -k1 -V -N -x -M -w -L -s4 -o 
 
 " Enable omni completion. (Ctrl-X Ctrl-O)
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
