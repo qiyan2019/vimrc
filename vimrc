@@ -61,6 +61,8 @@ set ruler		" show the cursor position all the time
 set autoread		" auto read when file is changed from outside
 set nu
 set mouse=h
+set title
+set magic
 
 
 
@@ -355,7 +357,7 @@ map <S-L> gt
 " new tab
 map <C-t><C-t> :tabnew<CR>
 " close tab
-map <C-t><C-w> :tabclose<CR> 
+map <C-t><C-w> :tabclose<CR>
 
 " ,/ turn off search highlighting
 nmap <leader>/ :nohl<CR>
@@ -365,8 +367,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 "tagbar
-nnoremap <silent> <F7> :TagbarToggle<CR> 
-nnoremap <silent> <F8> :NERDTreeToggle<CR> 
+nnoremap <silent> <F7> :TagbarToggle<CR>
+nnoremap <silent> <F8> :NERDTreeToggle<CR>
 
 "ctags
 map <F10> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ .<CR>
@@ -375,7 +377,7 @@ map <F10> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C+
 nmap <F4> :AuthorInfoDetect<cr>
 "add doc
 nmap <F3> :Dox <cr>
-nmap <F2> :ConqueTermVSplit 
+nmap <F2> :ConqueTermVSplit
 
 "goto here
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
