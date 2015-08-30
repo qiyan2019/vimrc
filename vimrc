@@ -1,6 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -34,10 +33,10 @@ Plugin 'Pydiction'
 Plugin 'fatih/vim-go'
 Plugin 'L9'
 Plugin 'FuzzyFinder'
-Plugin 'pylint.vim'
+"Plugin 'pylint.vim'
 Plugin 'vim-orgmode'
 Plugin 'speeddating.vim'
-Plugin 'AuthorInfo'
+Plugin 'dantezhu/authorinfo'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -45,7 +44,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()            " required
-filetype plugin indent on
 " General Settings
 
 set laststatus=2   " Always show the statusline
@@ -366,10 +364,10 @@ highlight PmenuSel guibg=lightgrey guifg=black
 "hi PmenuSel term=reverse ctermfg=3 ctermbg=8 gui=bold,reverse
 
 
-"nmap <F4> :AuthorInfoDetect<cr>
-"let g:vimrc_author='Xue Ning'  
-"let g:vimrc_email='ning.xue@duomi.com' 
-"let g:vimrc_homepage='http://www.meelive.cn' 
+nmap <F4> :AuthorInfoDetect<cr>
+let g:vimrc_author='Xue Ning'  
+let g:vimrc_email='ning.xue@meelive.cn' 
+let g:vimrc_homepage='http://www.meelive.cn' 
 
 nmap <F3> :Dox <cr>
 nmap <F2> :ConqueTermVSplit 
