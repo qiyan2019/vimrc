@@ -129,13 +129,7 @@ let g:airline_symbols.linenr = '¶'
 ""let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
-" terminal color settings
-"set background=dark
-"colorscheme desertEx
 set cursorline         " highlight current line
-"hi CursorLine  term=reverse cterm=reverse ctermbg=darkred ctermfg=black guibg=blue guifg=white
-"hi CursorLine  term=none cterm=none ctermbg=none ctermfg=white guibg=blue guifg=white
-"hi CursorLine  term=none ctermfg=none ctermbg=8 gui=bold,reverse
 
 
 
@@ -241,17 +235,8 @@ nmap <leader>/ :nohl<CR>
 vnoremap < <gv
 vnoremap > >gv
 
-" ,g generates the header guard
-"map <leader>g :call IncludeGuard()<CR>
-fun! IncludeGuard()
-    let basename = substitute(bufname(""), '.*/', '', '')
-    let guard = '_' . substitute(toupper(basename), '\.', '_', "H")
-    call append(0, "#ifndef " . guard)
-    call append(1, "#define " . guard)
-    call append( line("$"), "#endif // for #ifndef " . guard)
-endfun
 " ,f format the c/c++ code
-"map <leader>f :!astyle -A2 -S -p -U -k1 -x -M -w -L -s2 -o 
+"map <leader>f :!astyle -A2 -S -p -U -k1 -x -M -w -L -s4 -o 
 
 " Enable omni completion. (Ctrl-X Ctrl-O)
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -262,29 +247,12 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType java set omnifunc=javacomplete#Complete
 
-"" use syntax complete if nothing else available
-"if has("autocmd") && exists("+omnifunc")
-"    autocmd Filetype *
-"                \	if &omnifunc == "" |
-"                \		setlocal omnifunc=syntaxcomplete#Complete |
-"                \	endif
-"endif
-
-"set cot-=preview "disable doc preview in omnicomplete
-
-"" make CSS omnicompletion work for SASS and SCSS
-"autocmd BufNewFile,BufRead *.scss             set ft=scss.css
-"autocmd BufNewFile,BufRead *.sass             set ft=sass.css
-
 "--------------------------------------------------------------------------- 
 " ENCODING SETTINGS
 "--------------------------------------------------------------------------- 
 "set encoding=gb2312
 set encoding=utf-8                                  
 set termencoding=utf-8
-"set termencoding=gb2312
-"set fileencodings=utf-8,gb2312,ucs-bom,big5,latin1
-"set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 
 
@@ -303,10 +271,6 @@ let NERDTreeQuitOnOpen = 0
 let g:tagbar_autofocus = 0
 
 
-"set tags+=~/.vim/my_tags/stl_cpp
-"set tags+=/Users/melody/svnprojects/include/tags
-"set tags+=/usr/include/tags
-"set tags+=/usr/local/include/tags
 
 set path+=/usr/local/include
 set path+=/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include
@@ -319,15 +283,8 @@ set path+=/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include
 set path+=/usr/include
 set path+=~/svnprojects/include
 
-"SuperTab
-let g:SuperTabDefaultCompletionType = '<C-Tab>'
-"let g:SuperTabMappingForward = '<tab>'
-"let g:SuperTabMappingBackward = '<s-tab>'
-"let g:SuperTabRetainCompletionType=2
-"let g:SuperTabDefaultCompletionType="<C-X><C-O>"
-"let g:SuperTabDefaultCompletionType = "context"
 "
-" OmniCppComplete
+"OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
 let OmniCpp_ShowAccess = 1
@@ -338,8 +295,6 @@ let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD", "string", "vector", "map"]
 let OmniCpp_SelectFirstItem = 2
 
-" automatically open and close the popup menu / preview window
-"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
 
@@ -350,23 +305,12 @@ let g:indentLine_color_dark = 1
 let g:indentLine_char = '¦' 
 
 set cursorcolumn
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=darkgrey ctermbg=8 
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=black ctermbg=9
+
 map <F10> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ .<CR>
 
 
-
-
-
-"let g:EchoFuncKeyPrev='<C-p>'
-"let g:EchoFuncKeyNext='<C-n>'
-"let g:EchoFuncShowOnStatus = 1
-"let g:EchoFuncLangsUsed = ["c","java","cpp", 'javascript', 'python']
 highlight Pmenu    guibg=darkgrey  guifg=black 
 highlight PmenuSel guibg=lightgrey guifg=black
-"hi Pmenu term=reverse ctermfg=3 ctermbg=8 gui=bold,reverse
-"hi PmenuSel term=reverse ctermfg=3 ctermbg=8 gui=bold,reverse
-
 
 nmap <F4> :AuthorInfoDetect<cr>
 let g:vimrc_author='Xue Ning'  
@@ -377,7 +321,7 @@ nmap <F3> :Dox <cr>
 nmap <F2> :ConqueTermVSplit 
 
 "doxygen setting
-let g:DoxygenToolkit_authorName="Xue Ning, ning.xue@duomi.com"
+let g:DoxygenToolkit_authorName="Xue Ning, ning.xue@meelive.cn"
 let s:licenseTag = "Copyright(C)\<enter>"
 let s:licenseTag = s:licenseTag . "For free\<enter>"
 let s:licenseTag = s:licenseTag . "All right reserved\<enter>"
@@ -386,10 +330,7 @@ let g:DoxygenToolkit_briefTag_funcName="yes"
 let g:doxygen_enhanced_color=1
 
 
-"set completeopt=menuone,menu,longest,preview
-set completeopt=menuone,menu,preview
-
-let g:pydiction_location='~/.vim/bundle/pydiction/complete-dict' 
+let g:pydiction_location='~/.vim/bundle/Pydiction/complete-dict' 
 
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
