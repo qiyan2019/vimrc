@@ -297,7 +297,7 @@ let g:vim_markdown_folding_disabled=1
 "seystatistic
 "let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
 
 
