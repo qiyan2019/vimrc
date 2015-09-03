@@ -298,7 +298,7 @@ let g:vim_markdown_folding_disabled=1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_auto_jump = 1
+"let g:syntastic_auto_jump = 1
 
 
 
@@ -309,6 +309,7 @@ let g:EasyMotion_smartcase = 1
 
 "auto formater
 au BufWrite * :Autoformat
+au BufWrite * :SyntasticCheck
 let g:formatters_c = ['astyle_c']
 let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
 let g:formatters_cpp = ['astyle_cpp']
