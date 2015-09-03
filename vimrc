@@ -11,22 +11,21 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'a.vim'
 Plugin 'DoxygenToolkit.vim'
-Plugin 'molokai'
+Plugin 'omasr/molokai'
 ""plugin
 Plugin 'auto_mkdir'
 Plugin 'TagHighlight'
-Plugin 'AutoClose'
+Plugin 'auto-pairs'
 Plugin 'cuteErrorMarker'
-"Plugin 'EasyMotion'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-repeat'
 Plugin 'indent-motion'
-Plugin 'The-NERD-Commenter'
-Plugin 'The-NERD-tree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
 Plugin 'OmniCppComplete'
 Plugin 'vim-airline'
 Plugin 'surround.vim'
-Plugin 'Tagbar'
+Plugin 'majutsushi/tagbar'
 Plugin 'tlib'
 Plugin 'indentLine.vim'
 Plugin 'project.tar.gz'
@@ -47,6 +46,13 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'vim-scripts/matchit.zip'
+"Git
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mhinz/vim-signify'
+"cloorcheme
+Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()            " required
 " General Settings
@@ -295,6 +301,10 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:vim_markdown_folding_disabled=1
 
 "seystatistic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
