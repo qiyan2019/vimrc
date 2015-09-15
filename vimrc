@@ -53,6 +53,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'mhinz/vim-signify'
 "cloorcheme
 Plugin 'flazz/vim-colorschemes'
+"svn
+Plugin 'git://repo.or.cz/vcscommand'
 
 call vundle#end()            " required
 " General Settings
