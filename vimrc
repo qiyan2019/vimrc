@@ -326,7 +326,7 @@ let g:formatters_c = ['astyle_c']
 let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
 let g:formatters_cpp = ['astyle_cpp']
 let g:formatdef_astyle_cpp = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
-let g:formatdef_autopep8 = '"autopep8 --aggressive --aggressive - --range ".a:firstline." ".a:lastline." ".(&textwidth ? "--max-line-length=".&textwidth : "")'
+let g:formatdef_autopep8 = '"autopep8 --aggressive --aggressive -"'
 
 let g:syntastic_python_checkers = ['flake8']
 
