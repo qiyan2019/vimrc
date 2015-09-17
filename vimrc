@@ -326,9 +326,16 @@ let g:formatters_c = ['astyle_c']
 let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
 let g:formatters_cpp = ['astyle_cpp']
 let g:formatdef_astyle_cpp = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
-let g:formatdef_autopep8 = '"autopep8 --aggressive --aggressive -"'
+"let g:formatdef_autopep8 = '"autopep8 --aggressive --aggressive -"'
 
 let g:syntastic_python_checkers = ['flake8']
+
+"golang
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 "--------------------------------------------------------------------------- 
 " USEFUL SHORTCUTS
