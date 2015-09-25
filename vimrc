@@ -346,6 +346,7 @@ let g:go_highlight_build_constraints = 1
 
 "ctrlp
 let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_working_path_mode = 'ra'
 
 "
 
