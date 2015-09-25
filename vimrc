@@ -62,6 +62,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 
 Plugin 'mileszs/ack.vim'
+
 call vundle#end()            " required
 " General Settings
 
