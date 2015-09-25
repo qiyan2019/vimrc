@@ -32,14 +32,13 @@ Plugin 'project.tar.gz'
 Plugin 'Pydiction'
 Plugin 'fatih/vim-go'
 Plugin 'L9'
-Plugin 'FuzzyFinder'
+"Plugin 'FuzzyFinder'
 Plugin 'vim-orgmode'
 Plugin 'speeddating.vim'
 Plugin 'dantezhu/authorinfo'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/syntastic'
 Plugin 'Chiel92/vim-autoformat'
@@ -55,7 +54,12 @@ Plugin 'mhinz/vim-signify'
 Plugin 'flazz/vim-colorschemes'
 "svn
 Plugin 'git://repo.or.cz/vcscommand'
+" 等号对齐
+Plugin 'godlygeek/tabular'
 
+"ctrlp
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
 call vundle#end()            " required
 " General Settings
 
@@ -336,6 +340,11 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+"ctrlp
+let g:ctrlp_funky_syntax_highlight = 1
+
+"
 
 "--------------------------------------------------------------------------- 
 " USEFUL SHORTCUTS
