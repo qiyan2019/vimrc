@@ -62,6 +62,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 
 Plugin 'mileszs/ack.vim'
+Plugin 'rizzatti/dash.vim'
 
 call vundle#end()            " required
 " General Settings
@@ -146,7 +147,7 @@ set cursorline         " highlight current line
 
 
 set guioptions-=T
-set clipboard=unnamed	" yank to the system register (*) by default
+"set clipboard=unnamed	" yank to the system register (*) by default
 set showmatch		" Cursor shows matching ) and }
 set showmode		" Show current mode
 set wildchar=<TAB>	" start wild expansion in the command line using <TAB>
@@ -184,16 +185,16 @@ autocmd FileType c,cpp,cc,h set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0
 set viminfo='10,\"100,:20,%,n~/.viminfo
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-"--------------------------------------------------------------------------- 
-" Tip #382: Search for <cword> and replace with input() in all open buffers 
-"--------------------------------------------------------------------------- 
-fun! Replace() 
-    let s:word = input("Replace " . expand('<cword>') . " with:") 
-    :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/ge' 
-    :unlet! s:word 
-endfun 
+"---------------------------------------------------------------------------
+" Tip #382: Search for <cword> and replace with input() in all open buffers
+"---------------------------------------------------------------------------
+fun! Replace()
+    let s:word = input("Replace " . expand('<cword>') . " with:")
+    :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/ge'
+    :unlet! s:word
+endfun
 
-set wmw=0                     " set the min width of a window to 0 so we can maximize others 
+set wmw=0                     " set the min width of a window to 0 so we can maximize others
 set wmh=0                     " set the min height of a window to 0 so we can maximize others
 
 
@@ -206,10 +207,10 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType java set omnifunc=javacomplete#Complete
 
-"--------------------------------------------------------------------------- 
+"---------------------------------------------------------------------------
 " ENCODING SETTINGS
-"--------------------------------------------------------------------------- 
-set encoding=utf-8                                  
+"---------------------------------------------------------------------------
+set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 
@@ -256,22 +257,22 @@ set completeopt=menuone,menu,longest,preview
 
 
 "indentline
-let g:indentLine_color_term = 239  
-let g:indentLine_color_gui = '#A4E57E'  
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#A4E57E'
 let g:indentLine_color_dark = 1
-let g:indentLine_char = '¦' 
+let g:indentLine_char = '¦'
 
 set cursorcolumn
 
 
 
-highlight Pmenu    guibg=darkgrey  guifg=black 
+highlight Pmenu    guibg=darkgrey  guifg=black
 highlight PmenuSel guibg=lightgrey guifg=black
 
 "author info
-let g:vimrc_author='Xue Ning'  
-let g:vimrc_email='ning.xue@meelive.cn' 
-let g:vimrc_homepage='http://www.meelive.cn' 
+let g:vimrc_author='Xue Ning'
+let g:vimrc_email='ning.xue@meelive.cn'
+let g:vimrc_homepage='http://www.meelive.cn'
 
 
 "doxygen setting
@@ -285,7 +286,7 @@ let g:doxygen_enhanced_color=1
 
 
 "pydict"
-let g:pydiction_location='~/.vim/bundle/Pydiction/complete-dict' 
+let g:pydiction_location='~/.vim/bundle/Pydiction/complete-dict'
 
 "snipmate
 let g:UltiSnipsExpandTrigger="<c-k>"
@@ -295,11 +296,11 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
 "ycm config
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_filepath_completion_use_working_dir = 1
-let g:ycm_collect_identifiers_from_tags_files = 1  
-let g:ycm_seed_identifiers_with_syntax = 1  
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 "let g:ycm_use_ultisnips_completer = 0
 "let g:ycm_key_list_select_completion = ['<S-TAB>', '<Down>']
 "let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
@@ -350,15 +351,15 @@ let g:ctrlp_working_path_mode = 'ra'
 
 "
 
-"--------------------------------------------------------------------------- 
+"---------------------------------------------------------------------------
 " USEFUL SHORTCUTS
-"--------------------------------------------------------------------------- 
+"---------------------------------------------------------------------------
 " set leader to ,
 let mapleader=","
 let g:mapleader=","
 
 vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>  
+vnoremap <silent> # :call VisualSearch('b')<CR>
 
 map gf :IHV<cr>
 
@@ -371,20 +372,20 @@ map <leader>s :call Replace()<CR>
 "ys$" 当前到行尾, 引号引住"
 map <leader>e ysiw
 " open the error console
-map <leader>ec :botright cope<CR> 
+map <leader>ec :botright cope<CR>
 " move to next error
 map <leader>] :cn<CR>
 " move to the prev error
 map <leader>[ :cp<CR>
 
 " --- move around splits {
-" move to and maximize the below split 
+" move to and maximize the below split
 map <C-j> <ESC><C-w>j
 map <C-k> <ESC><C-w>k
 map <C-h> <ESC><C-w>h
 map <C-l> <ESC><C-w>l
 
-" go to prev tab 
+" go to prev tab
 map <S-H> gT
 " go to next tab
 map <S-L> gt
