@@ -81,6 +81,8 @@ flags = [
     '/System/Library/Frameworks',
     '-isystem',
     '/Library/Frameworks',
+    '-isystem',
+    '/home/ning.xue/svnprojects/include'
 ]
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
