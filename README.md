@@ -1,6 +1,6 @@
 # 安装方法
 ## 克隆项目
-`cd ~ && git clone https://github.com/frtmelody/vimrc.git .vim`
+`git clone https://github.com/frtmelody/vimrc.git ~/.vim`
 ## 安装项目
 ```
 cd ~/.vim
