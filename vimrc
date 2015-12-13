@@ -11,6 +11,7 @@ Plug 'gmarik/Vundle.vim'
 Plug 'a.vim'
 Plug 'DoxygenToolkit.vim'
 Plug 'tomasr/molokai'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'  }
 ""plugin
 Plug 'auto_mkdir'
 Plug 'TagHighlight'
