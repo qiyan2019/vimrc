@@ -329,8 +329,8 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 
 "auto formater
-au BufWrite * :Autoformat
-au BufWrite * :SyntasticCheck
+au BufWritePre * :Autoformat 
+au BufWritePost * :SyntasticCheck
 let g:formatters_c = ['astyle_c']
 let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
 let g:formatters_cpp = ['astyle_cpp']
