@@ -3,6 +3,6 @@
 `git clone  https://github.com/junegunn/vim-plug.git ~/.vim`
 ## 安装 
 ```
-cd ~/.vim     
-./install.sh
+cd ~/.vim
+git sumodule update --init
 ```
