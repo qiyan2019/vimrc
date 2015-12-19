@@ -59,11 +59,20 @@ Plug 'godlygeek/tabular'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
 
+"ack, dash
 Plug 'mileszs/ack.vim'
 Plug 'rizzatti/dash.vim'
 
+" c++ 代码生成
 Plug 'derekwyatt/vim-protodef'
 Plug 'derekwyatt/vim-fswitch'
+
+" vim 终端
+Plug 'frtmelody/conque'
+"快速选中结对
+Plug 'frtmelody/vim-expand-region'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 call plug#end()
 " General Settings
@@ -309,6 +318,7 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_echo_current_diagnostic = 1
 let g:ycm_complete_in_strings = 1
 let g:ycm_use_ultisnips_completer = 1
+
 "let g:ycm_key_list_select_completion = ['<S-TAB>', '<Down>']
 "let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 "let g:SuperTabDefaultCompletionType = '<S-Tab>'
@@ -475,3 +485,7 @@ nmap <Leader>a,, :Tabularize /,\zs<CR>
 vmap <Leader>a,, :Tabularize /,\zs<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+
+"expand-region
+map K <Plug>(expand_region_expand)
+map J <Plug>(expand_region_shrink)
