@@ -62,6 +62,9 @@ Plug 'tacahiroy/ctrlp-funky'
 Plug 'mileszs/ack.vim'
 Plug 'rizzatti/dash.vim'
 
+Plug 'derekwyatt/vim-protodef'
+Plug 'derekwyatt/vim-fswitch'
+
 call plug#end()
 " General Settings
 
