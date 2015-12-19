@@ -4,6 +4,7 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/vim-plug
 call plug#begin('~/.vim/bundle')
 
+Plug 'frtmelody/vim-plug'
 Plug 'gmarik/Vundle.vim'
 
 Plug 'a.vim'
@@ -50,8 +51,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 "cloorcheme
 Plug 'flazz/vim-colorschemes'
-"svn
-Plug 'git://repo.or.cz/vcscommand'
+
 " 等号对齐
 Plug 'godlygeek/tabular'
 
@@ -186,9 +186,13 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 "---------------------------------------------------------------------------
 " Tip #382: Search for <cword> and replace with input() in all open buffers
 "---------------------------------------------------------------------------
-fun! Replace()
+fun! Replace(confirm)
     let s:word = input("Replace " . expand('<cword>') . " with:")
-    :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/ge'
+    if a:confirm
+        :exe 'argdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/gec'
+    else
+        :exe 'argdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/ge'
+    endif
     :unlet! s:word
 endfun
 
@@ -351,6 +355,9 @@ let g:go_highlight_build_constraints = 1
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_working_path_mode = 'ra'
 
+" synatistic
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
 "
 
 "---------------------------------------------------------------------------
@@ -366,7 +373,8 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 map gf :IHV<cr>
 
 "replace the current word in all opened buffers
-map <leader>s :call Replace()<CR>
+map <leader>s :call Replace(0)<CR>
+map <leader>r :call Replace(1)<CR>
 
 "surround
 "ds
@@ -406,7 +414,9 @@ vnoremap > >gv
 
 "tagbar
 nnoremap <silent> <F7> :TagbarToggle<CR>
+nnoremap <silent> <leader>tt :TagbarToggle<CR>
 nnoremap <silent> <F8> :NERDTreeToggle<CR>
+nnoremap <silent> <leader>tn :NERDTreeToggle<CR>
 
 "ctags
 map <F10> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ .<CR>
@@ -431,3 +441,34 @@ map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 "map  n <Plug>(easymotion-next)
 "map  N <Plug>(easymotion-prev)
+
+" git fugitive
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+nnoremap <silent> <leader>gr :Gread<CR>
+nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>ge :Gedit<CR>
+" Mnemonic _i_nteractive
+nnoremap <silent> <leader>gi :Git add -p %<CR>
+nnoremap <silent> <leader>gt :SignifyToggle<CR>
+
+"tabularize
+vmap <Leader>a& :Tabularize /&<CR>
+nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+nmap <Leader>a=> :Tabularize /=><CR>
+vmap <Leader>a=> :Tabularize /=><CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a:: :Tabularize /:\zs<CR>
+vmap <Leader>a:: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,<CR>
+vmap <Leader>a, :Tabularize /,<CR>
+nmap <Leader>a,, :Tabularize /,\zs<CR>
+vmap <Leader>a,, :Tabularize /,\zs<CR>
+nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
