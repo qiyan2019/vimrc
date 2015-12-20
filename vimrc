@@ -70,7 +70,7 @@ Plug 'derekwyatt/vim-fswitch'
 " vim 终端
 Plug 'frtmelody/conque'
 "快速选中结对
-Plug 'frtmelody/vim-expand-region'
+Plug 'gcmt/wildfire.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
@@ -127,6 +127,7 @@ set t_Co=256
 "colorscheme solarized
 colorscheme molokai
 let g:rehash256 = 1
+let g:molokai_original = 1
 
 "let g:airline_section_b = '%{strftime("%d")}'
 "let g:airline#extensions#tabline#enabled = 1
@@ -486,6 +487,7 @@ vmap <Leader>a,, :Tabularize /,\zs<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
-"expand-region
-map K <Plug>(expand_region_expand)
-map J <Plug>(expand_region_shrink)
+" This selects the next closest text object.
+map <SPACE> <Plug>(wildfire-fuel)
+" This selects the previous closest text object.
+vmap <C-SPACE> <Plug>(wildfire-water)
