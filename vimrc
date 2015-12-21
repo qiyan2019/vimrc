@@ -72,7 +72,10 @@ Plug 'frtmelody/conque'
 "快速选中结对
 Plug 'gcmt/wildfire.vim'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" undo
+Plug 'sjl/gundo.vim'
+
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 call plug#end()
 " General Settings
@@ -491,3 +494,5 @@ vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 map <SPACE> <Plug>(wildfire-fuel)
 " This selects the previous closest text object.
 vmap <C-SPACE> <Plug>(wildfire-water)
+
+nnoremap <Leader>u :GundoToggle<CR>
