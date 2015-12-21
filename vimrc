@@ -31,7 +31,7 @@ Plug 'project.tar.gz'
 Plug 'Pydiction'
 Plug 'fatih/vim-go'
 Plug 'L9'
-"Plug 'FuzzyFinder'
+
 Plug 'vim-orgmode'
 Plug 'speeddating.vim'
 Plug 'dantezhu/authorinfo'
@@ -41,7 +41,9 @@ Plug 'honza/vim-snippets'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/syntastic'
 Plug 'frtmelody/vim-autoformat'
+
 Plug 'kien/rainbow_parentheses.vim'
+
 Plug 'junegunn/vim-easy-align'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'vim-scripts/matchit.zip'
@@ -242,6 +244,7 @@ hi link EasyMotionShade  Comment
 " --- TagBar
 " toggle TagBar with F7
 let NERDTreeQuitOnOpen = 0
+let g:tagbar_width = 25
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 0
 
@@ -497,3 +500,9 @@ map <SPACE> <Plug>(wildfire-fuel)
 vmap <C-SPACE> <Plug>(wildfire-water)
 
 nnoremap <Leader>u :GundoToggle<CR>
+
+"彩色括弧
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
