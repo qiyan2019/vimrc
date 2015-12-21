@@ -75,7 +75,7 @@ Plug 'gcmt/wildfire.vim'
 " undo
 Plug 'sjl/gundo.vim'
 
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 call plug#end()
 " General Settings
@@ -373,7 +373,8 @@ let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_working_path_mode = 'ra'
 
 " synatistic
-let g:syntastic_error_symbol = '✗'
+"let g:syntastic_error_symbol = '✗'
+let g:syntastic_error_symbol = '➜'
 let g:syntastic_warning_symbol = '⚠'
 "
 
