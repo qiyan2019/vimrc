@@ -117,9 +117,8 @@ function! VisualSearch(direction) range
     let @" = l:saved_reg
 endfunction
 
-
 " auto reload vimrc when editing it
-autocmd! bufwritepost .vimrc source ~/.vimrc
+au BufWritePost ~/.vim/vimrc source ~/.vim/vimrc
 
 syntax enable
 syntax on		" syntax highlight
@@ -369,8 +368,12 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 "ctrlp
+let g:ctrlp_map = '<c-l>'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
+
 
 " synatistic
 "let g:syntastic_error_symbol = '✗'
@@ -387,6 +390,7 @@ let g:mapleader=","
 
 vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
+
 
 map gf :IHV<cr>
 
@@ -412,16 +416,6 @@ map <C-j> <ESC><C-w>j
 map <C-k> <ESC><C-w>k
 map <C-h> <ESC><C-w>h
 map <C-l> <ESC><C-w>l
-
-" go to prev tab
-map <S-H> gT
-" go to next tab
-map <S-L> gt
-
-" new tab
-map <C-t><C-t> :tabnew<CR>
-" close tab
-map <C-t><C-w> :tabclose<CR>
 
 " ,/ turn off search highlighting
 nmap <leader>/ :nohl<CR>
@@ -503,3 +497,4 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
