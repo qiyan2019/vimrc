@@ -94,6 +94,7 @@ set nu
 set mouse=h
 set title
 set magic
+set titleold = "
 
 
 
@@ -116,6 +117,33 @@ function! VisualSearch(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+if exists('$TMUX')
+    set term=screen-256color
+endif
+
+"使用粘贴的时候 禁止缩进
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 " auto reload vimrc when editing it
 au BufWritePost ~/.vim/vimrc source ~/.vim/vimrc
