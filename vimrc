@@ -10,6 +10,7 @@ Plug 'gmarik/Vundle.vim'
 Plug 'a.vim'
 Plug 'DoxygenToolkit.vim'
 Plug 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'  }
 ""plugin
 Plug 'auto_mkdir'
@@ -79,6 +80,8 @@ Plug 'sjl/gundo.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
+Plug 'nginx.vim'
+
 call plug#end()
 " General Settings
 
@@ -96,13 +99,6 @@ set title
 set magic
 set titleold = "
 
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
 
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
@@ -161,7 +157,7 @@ set hlsearch		" search highlighting
 
 set background=dark
 set t_Co=256
-"let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 "colorscheme solarized
 colorscheme molokai
 let g:rehash256 = 1
@@ -402,7 +398,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 "ctrlp
-let g:ctrlp_map = '<c-l>'
+let g:ctrlp_map = '<c-p>'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_working_path_mode = 0
