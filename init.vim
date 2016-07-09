@@ -7,7 +7,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'frtmelody/vim-plug'
 Plug 'gmarik/Vundle.vim'
 
-Plug 'a.vim'
+Plug 'frtmelody/a.vim'
 Plug 'DoxygenToolkit.vim'
 Plug 'tomasr/molokai'
 Plug 'altercation/vim-colors-solarized'
@@ -36,11 +36,12 @@ Plug 'L9'
 Plug 'vim-orgmode'
 Plug 'speeddating.vim'
 Plug 'dantezhu/authorinfo'
-Plug 'Valloric/YouCompleteMe', { 'on': [] }
+Plug 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
 
-Plug 'SirVer/ultisnips', {'on': []}
 Plug 'honza/vim-snippets'
 Plug 'plasticboy/vim-markdown'
+Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'scrooloose/syntastic'
 Plug 'frtmelody/vim-autoformat'
 
@@ -69,7 +70,7 @@ Plug 'rizzatti/dash.vim'
 
 " c++ 代码生成
 Plug 'derekwyatt/vim-protodef'
-Plug 'derekwyatt/vim-fswitch'
+Plug 'frtmelody/vim-fswitch'
 
 " vim 终端
 Plug 'frtmelody/conque'
@@ -82,6 +83,9 @@ Plug 'sjl/gundo.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'nginx.vim'
+
+" tmux
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 " General Settings
@@ -121,9 +125,9 @@ function! VisualSearch(direction) range
     let @" = l:saved_reg
 endfunction
 
-if exists('$TMUX')
-    set term=screen-256color
-endif
+"if exists('$TMUX')
+"    set term=screen-256color
+"endif
 
 "使用粘贴的时候 禁止缩进
 function! WrapForTmux(s)
@@ -225,7 +229,7 @@ au FileType Makefile set noexpandtab
 autocmd FileType c,cpp,cc,h set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^0,:s,=s,g0,h1s,ps,t0,+s,(0,ms,)20,*30
 
 "Restore cursor to file position in previous editing session
-set viminfo='10,\"100,:20,%,n~/.viminfo
+set viminfo='10,\"100,:20,%,n~/.nviminfo
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
 "---------------------------------------------------------------------------
@@ -353,13 +357,12 @@ let g:ycm_echo_current_diagnostic = 1
 let g:ycm_complete_in_strings = 1
 let g:ycm_use_ultisnips_completer = 1
 
-augroup load_us_ycm
-    autocmd!
-    autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-                \| call youcompleteme#Enable()
-                \| call UltiSnips#FileTypeChanged()
-                \| autocmd! load_us_ycm
-augroup END
+"augroup load_us_ycm
+"    autocmd!
+"    autocmd InsertEnter * call plug#load('ultisnips')
+"                \| call UltiSnips#FileTypeChanged()
+"                \| autocmd! load_us_ycm
+"augroup END
 "let g:ycm_key_list_select_completion = ['<S-TAB>', '<Down>']
 "let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 "let g:SuperTabDefaultCompletionType = '<S-Tab>'
@@ -367,6 +370,9 @@ augroup END
 
 "markdown"
 let g:vim_markdown_folding_disabled=1
+let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_github=1
+let vim_markdown_preview_hotkey='<C-m>'
 
 "seystatistic
 set statusline+=%#warningmsg#
@@ -378,7 +384,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 "let g:syntastic_auto_jump = 1
 "
-let g:autoformat_autoindent = 0
 
 
 
@@ -388,8 +393,12 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 
 "auto formater
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
 au BufWritePre * :Autoformat
 au BufWritePost * :SyntasticCheck
+
 let g:formatters_c = ['astyle_c']
 let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
 let g:formatters_cpp = ['astyle_cpp']
@@ -536,3 +545,11 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+" tmux
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> {Left-mapping} :TmuxNavigateLeft<cr>
+nnoremap <silent> {Down-Mapping} :TmuxNavigateDown<cr>
+nnoremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
+nnoremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
+nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
