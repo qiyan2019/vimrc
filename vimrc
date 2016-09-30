@@ -64,6 +64,10 @@ Plug 'godlygeek/tabular'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
 
+Plug 'dyng/ctrlsf.vim'
+Plug 'rking/ag.vim'
+Plug 'vim-multiple-cursors'
+
 "ack, dash
 Plug 'mileszs/ack.vim'
 Plug 'rizzatti/dash.vim'
@@ -83,6 +87,8 @@ Plug 'sjl/gundo.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'nginx.vim'
+
+Plug 'derekwyatt/vim-scala'
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -125,9 +131,9 @@ function! VisualSearch(direction) range
     let @" = l:saved_reg
 endfunction
 
-"if exists('$TMUX')
-"    set term=screen-256color
-"endif
+if exists('$TMUX')
+    set term=screen-256color
+endif
 
 "使用粘贴的时候 禁止缩进
 function! WrapForTmux(s)
@@ -162,11 +168,11 @@ set hlsearch		" search highlighting
 
 set background=dark
 set t_Co=256
-colorscheme solarized
+"colorscheme solarized
 let g:solarized_termcolors=256
-"colorscheme molokai
-"let g:rehash256 = 1
-"let g:molokai_original = 1
+colorscheme molokai
+let g:rehash256 = 1
+let g:molokai_original = 1
 
 let g:airline_theme= "solarized"
 "let g:airline_section_b = '%{strftime("%d")}'
@@ -399,10 +405,10 @@ let g:autoformat_remove_trailing_spaces = 0
 au BufWritePre * :Autoformat
 au BufWritePost * :SyntasticCheck
 
-let g:formatters_c = ['astyle_c']
-let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
-let g:formatters_cpp = ['astyle_cpp']
-let g:formatdef_astyle_cpp = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
+"let g:formatters_c = ['astyle_c']
+"let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
+"let g:formatters_cpp = ['astyle_cpp']
+"let g:formatdef_astyle_cpp = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
 "let g:formatdef_autopep8 = '"autopep8 --aggressive --aggressive -"'
 
 let g:syntastic_python_checkers = ['flake8']
@@ -478,13 +484,13 @@ nnoremap <silent> <F8> :NERDTreeToggle<CR>
 nnoremap <silent> <leader>tn :NERDTreeToggle<CR>
 
 "ctags
-map <F10> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ .<CR>
+"map <Leader>c :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ .<CR>
 
 "add author info
-nmap <F4> :AuthorInfoDetect<cr>
+"nmap <F4> :AuthorInfoDetect<cr>
 "add doc
-nmap <F3> :Dox <cr>
-nmap <F2> :ConqueTermVSplit
+"nmap <F3> :Dox <cr>
+"nmap <F2> :ConqueTermVSplit
 
 "goto here
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
@@ -547,9 +553,24 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " tmux
 let g:tmux_navigator_no_mappings = 1
-
 nnoremap <silent> {Left-mapping} :TmuxNavigateLeft<cr>
 nnoremap <silent> {Down-Mapping} :TmuxNavigateDown<cr>
 nnoremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
 nnoremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
 nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+
+" ctrlfs
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+nmap     <C-F>l <Plug>CtrlSFQuickfixPrompt
+vmap     <C-F>l <Plug>CtrlSFQuickfixVwordPath
+vmap     <C-F>L <Plug>CtrlSFQuickfixVwordExec
+
+" vim zhs
+nmap <C-x>s :ConqueTermVSplit zsh<CR>
