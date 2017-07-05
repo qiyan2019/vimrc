@@ -5,14 +5,16 @@ set rtp+=~/.vim/bundle/vim-plug
 call plug#begin('~/.vim/bundle')
 
 Plug 'frtmelody/vim-plug'
-Plug 'gmarik/Vundle.vim'
+"Plug 'gmarik/Vundle.vim'
 
 Plug 'frtmelody/a.vim'
 Plug 'DoxygenToolkit.vim'
-Plug 'tomasr/molokai'
+""Plug 'tomasr/molokai'
+Plug 'fatih/molokai'
 Plug 'altercation/vim-colors-solarized'
+Plug 'junegunn/vim-emoji'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'  }
-""plugin
+"""plugin
 Plug 'auto_mkdir'
 Plug 'TagHighlight'
 Plug 'auto-pairs'
@@ -23,7 +25,9 @@ Plug 'indent-motion'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'OmniCppComplete'
-Plug 'vim-airline'
+Plug 'w0rp/ale'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'surround.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tlib'
@@ -31,18 +35,19 @@ Plug 'indentLine.vim'
 Plug 'project.tar.gz'
 Plug 'Pydiction'
 Plug 'fatih/vim-go'
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'L9'
 
 Plug 'vim-orgmode'
 Plug 'speeddating.vim'
 Plug 'dantezhu/authorinfo'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe',  { 'do': './install.py --clang-completer --gocode-completer --tern-completer --system-libclang' }
 Plug 'SirVer/ultisnips'
 
 Plug 'honza/vim-snippets'
 Plug 'plasticboy/vim-markdown'
 Plug 'JamshedVesuna/vim-markdown-preview'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'frtmelody/vim-autoformat'
 
 Plug 'kien/rainbow_parentheses.vim'
@@ -56,8 +61,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 "cloorcheme
 Plug 'flazz/vim-colorschemes'
+Plug 'colepeters/spacemacs-theme.vim'
 
-" 等号对齐
+"" 等号对齐
 Plug 'godlygeek/tabular'
 
 "ctrlp
@@ -66,7 +72,7 @@ Plug 'tacahiroy/ctrlp-funky'
 
 Plug 'dyng/ctrlsf.vim'
 Plug 'rking/ag.vim'
-Plug 'vim-multiple-cursors'
+"Plug 'vim-multiple-cursors'
 
 "ack, dash
 Plug 'mileszs/ack.vim'
@@ -89,6 +95,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'nginx.vim'
 
 Plug 'derekwyatt/vim-scala'
+Plug 'ktvoelker/sbt-vim'
+Plug 'mpollmeier/vim-scalaConceal'
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -132,7 +140,7 @@ function! VisualSearch(direction) range
 endfunction
 
 if exists('$TMUX')
-    set term=screen-256color
+    set term=xterm-256color
 endif
 
 "使用粘贴的时候 禁止缩进
@@ -169,17 +177,20 @@ set hlsearch		" search highlighting
 set background=dark
 set t_Co=256
 "colorscheme solarized
-let g:solarized_termcolors=256
+if (has("termguicolors"))
+  set termguicolors
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
 colorscheme molokai
+let g:solarized_termcolors=256
 let g:rehash256 = 1
 let g:molokai_original = 1
 
-let g:airline_theme= "solarized"
-"let g:airline_section_b = '%{strftime("%d")}'
+"let g:airline_theme= "molokai"
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline_enable_branch= 1
-let g:airline_enable_syntastic=1
 let g:airline_detect_paste= 1
 """ powerline symbols
 if !exists('g:airline_symbols')
@@ -222,6 +233,7 @@ set noerrorbells
 set novisualbell
 set vb t_vb=
 set tm=500
+set autowrite
 
 " TAB setting{
 set expandtab        "replace <TAB> with spaces
@@ -233,6 +245,7 @@ au FileType Makefile set noexpandtab
 
 " C/C++ specific settings
 autocmd FileType c,cpp,cc,h set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^0,:s,=s,g0,h1s,ps,t0,+s,(0,ms,)20,*30
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=8 shiftwidth=8
 
 "Restore cursor to file position in previous editing session
 set viminfo='10,\"100,:20,%,n~/.viminfo
@@ -354,6 +367,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
 "ycm config
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_auto_trigger = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_filepath_completion_use_working_dir = 1
@@ -362,6 +378,8 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_echo_current_diagnostic = 1
 let g:ycm_complete_in_strings = 1
 let g:ycm_use_ultisnips_completer = 1
+
+set completeopt-=preview
 
 "augroup load_us_ycm
 "    autocmd!
@@ -380,18 +398,6 @@ let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<C-m>'
 
-"seystatistic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-"let g:syntastic_auto_jump = 1
-"
-
-
 
 "easymotione
 let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
@@ -401,9 +407,9 @@ let g:EasyMotion_smartcase = 1
 "auto formater
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
+let g:autoformat_remove_trailing_spaces = 1
 au BufWritePre * :Autoformat
-au BufWritePost * :SyntasticCheck
+"au BufWritePost * :SyntasticCheck
 
 "let g:formatters_c = ['astyle_c']
 "let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
@@ -411,7 +417,7 @@ au BufWritePost * :SyntasticCheck
 "let g:formatdef_astyle_cpp = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
 "let g:formatdef_autopep8 = '"autopep8 --aggressive --aggressive -"'
 
-let g:syntastic_python_checkers = ['flake8']
+"let g:syntastic_python_checkers = ['flake8']
 
 "golang
 let g:go_highlight_functions = 1
@@ -419,6 +425,23 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_extra_types = 1
+
+let g:go_def_mode = 'godef'
+let g:go_fmt_command = "goimports"
+let g:go_metalinter_autosave = 0
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_deadline = "5s"
+"let g:go_auto_type_info = 1
+"let g:go_auto_sameids = 1
+
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
 "ctrlp
 let g:ctrlp_map = '<c-p>'
@@ -427,11 +450,32 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
 
+" ale syntastic
+let g:ale_sign_error = '✗'
+""let g:ale_sign_warning = '⚠'
+let g:ale_sign_warning = '⊝'
+"let g:ale_sign_error = emoji#for('boom')
+"let g:ale_sign_warning = emoji#for('small_orange_diamond')
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
 
-" synatistic
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 0
+let g:ale_lint_on_enter = 1
+
+"let g:ale_linters = {"go":["gometalinter"]}
+let g:ale_linters = {"go":["go build", "go vet", "golint", "staticcheck", "gofmt"]}
+let g:ale_go_gometalinter_options = "--fast"
+
+
+
+ "synatistic
+"let g:syntastic_error_symbol = '➜'
 "let g:syntastic_error_symbol = '✗'
-let g:syntastic_error_symbol = '➜'
-let g:syntastic_warning_symbol = '⚠'
+"let g:syntastic_warning_symbol = '⚠'
 "
 
 "---------------------------------------------------------------------------
@@ -465,10 +509,10 @@ map <leader>[ :cp<CR>
 
 " --- move around splits {
 " move to and maximize the below split
-map <C-j> <ESC><C-w>j
-map <C-k> <ESC><C-w>k
-map <C-h> <ESC><C-w>h
-map <C-l> <ESC><C-w>l
+"map <C-j> <ESC><C-w>j
+"map <C-k> <ESC><C-w>k
+"map <C-h> <ESC><C-w>h
+"map <C-l> <ESC><C-w>l
 
 " ,/ turn off search highlighting
 nmap <leader>/ :nohl<CR>
@@ -552,12 +596,12 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " tmux
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> {Left-mapping} :TmuxNavigateLeft<cr>
-nnoremap <silent> {Down-Mapping} :TmuxNavigateDown<cr>
-nnoremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
-nnoremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
-nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+"let g:tmux_navigator_no_mappings = 0
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
 " ctrlfs
 nmap     <C-F>f <Plug>CtrlSFPrompt
@@ -574,3 +618,31 @@ vmap     <C-F>L <Plug>CtrlSFQuickfixVwordExec
 
 " vim zhs
 nmap <C-x>s :ConqueTermVSplit zsh<CR>
+
+let g:syntastic_ignore_files = ['\m\c\.h$', '\m\.sbt$']
+
+" Scala has fsc and scalac checkers--running both is pretty redundant and
+" slow. An explicit `:SyntasticCheck scalac` can always run the other.
+"let g:syntastic_scala_checkers = ['fsc']
+"let g:syntastic_scala_checkers = ['']
+
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.'],
+  \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+  \             're!\[.*\]\s'],
+  \   'ocaml' : ['.', '#'],
+  \   'cpp,objcpp' : ['->', '.', '::'],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+  \   'ruby' : ['.', '::'],
+  \   'lua' : ['.', ':'],
+  \   'erlang' : [':'],
+  \ }
+
+
+if has('gui_running')
+        set guioptions-=T           " Remove the toolbar
+        "set lines=40                " 40 lines of text instead of 24
+        set guifont=Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h16
+endif
